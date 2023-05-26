@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Calculator with Html Css</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Golos+Text:wght@400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: larger;
+        }
+
+        .conatiner {
+            text-align: center;
+            padding-top: 20px;
+            width: 264px;
+            margin: auto;
+            border-radius: 10px;
+            background-color: #b7ac44;
+            margin-top: 25px;
+            padding-bottom: 15px;
+            box-shadow: 1px 3px 8px rgb(232 220 232 / 42%);
+        }
+
+        .set {
+            padding: 4px;
+        }
+
+        .flex {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 49px;
+            height: 49px;
+            margin: 4px;
+            color: white;
+            background-color: #3f4656;
+            border: 1px;
+            border-radius: 15px;
+            font-size: initial;
+            font-family: 'Poppins';
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 3px 4px 12px -5px rgb(0 0 0);
+        }
+
+        .bilu {
+            background-color: #6477ef;
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .buttn {
+            border: 1px;
+            border-radius: 25px;
+            margin-left: 15px;
+        }
+
+        .fornt {
+            width: 170px;
+            padding: 12px;
+            margin-right: 15px;
+            outline: none;
+            background-color: #f5f5f5f5;
+            border: 1px;
+            border-radius: 8px;
+            box-shadow: 2px 4px 8px 2px rgb(110 101 2 / 63%);
+            text-align: end;
+        }
+
+        .inputt {
+            justify-content: space-between;
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 10px;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="conatiner flex">
+        <div class="inputt box">
+            <button class="btn buttn">c</button>
+            <input class="fornt" type="text">
+        </div>
+        <div class="set box">
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn bilu">/</button>
+        </div>
+        <div class="set box">
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn bilu">*</button>
+        </div>
+        <div class="set box">
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn bilu">-</button>
+        </div>
+        <div class="set box">
+            <button class="btn">0</button>
+            <button class="btn bilu">.</button>
+            <button class="btn bilu">=</button>
+            <button class="btn bilu">+</button>
+        </div>
+    </div>
+    <script>
+        const buttons = document.querySelectorAll('.btn');;
+        const input = document.querySelector('fornt');
+        const container = document.querySelector('.conatiner');
+        let string = "";
+
+        buttons.forEach((elm) => {
+            elm.addEventListener('click', (e) => {
+                if (e.target.innerHTML == '=') {
+                    string = eval(string);
+                    document.querySelector('input').value = string;
+                } else if (e.target.innerHTML == 'c') {
+                    string = '';
+                    document.querySelector('input').value = string;
+                } else {
+                    console.log(e.target);
+                    string = string + e.target.innerHTML;
+                    document.querySelector('input').value = string;
+                }
+            });
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            //debugger
+            console.log(e)
+            if (e.key === '0' || e.key === '1' || e.key === '2' ||
+                e.key === '3' || e.key === '4' || e.key === '5' ||
+                e.key === '6' || e.key === '7' || e.key === '8' ||
+                e.key === "." || e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+                string = string + e.key;
+                document.querySelector('input').value = string;
+            } else if (e.key === "Enter" || e.key === "=") {
+                string = eval(string);
+                document.querySelector('input').value = string;
+            } else if (e.key === "Backspace" || e.key === "c") {
+                string = '';
+                document.querySelector('input').value = string;
+            }
+        });
+    </script>
+</body>
+</html>
